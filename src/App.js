@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import HomePage from './pages/homepage';
+import CyclesPage from './pages/cyclespage';
+import SportsPage from './pages/sportspage';
+import ElectronicsPage from './pages/electronicspage';
+import AboutPage from './pages/aboutpage';
+import LoginPage from './pages/loginpage';
+import LogoutPage from './pages/logoutpage';
+import { AuthContextProvider } from './context/AuthContext';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AuthContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LoginPage></LoginPage>} />
+            <Route path="/homepage" element={<HomePage></HomePage>} />
+            <Route path="/cyclespage" element={<CyclesPage></CyclesPage>} />
+            <Route path="/sportspage" element={<SportsPage></SportsPage>} />
+            <Route path="/electronicspage" element={<ElectronicsPage></ElectronicsPage>} />
+            <Route path="/aboutpage" element={<AboutPage></AboutPage>} />
+          </Routes>
+        </BrowserRouter>
+      </AuthContextProvider>
     </div>
   );
 }

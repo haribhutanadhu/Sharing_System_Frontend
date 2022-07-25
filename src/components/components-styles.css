@@ -1,0 +1,57 @@
+.section2{
+    padding: 5% 10%;
+    text-align: center;
+}
+.section2-p{
+    color: #596e79;
+}
+
+
+
+/*--------------------------------------- Card-Home -------------------------*/
+.card-section{
+    background-color:  #E8F0F2;
+}
+.card{
+    width: auto;
+}
+
+.card:hover{
+    box-shadow: 5px 10px 20px 1px rgba(0,0,0,0.253) !important;
+
+}
+
+.cardtext{
+    font-size: 0.9rem;
+    padding: 0.4rem 1.6rem;
+}
+
+.container-fluid .row{
+    padding: 3rem;
+}
+
+/*--------------------------------------- Card-Home-------------------------*/
+
+
+/*--------------------------------------- Footer-------------------------*/
+
+.end-icon{
+    color:black;
+    padding: 10px;
+}
+.contact {
+    text-align: center;
+    background-color: #fff;
+    line-height: 2.5;
+    padding: 2%;
+}
+.contact-para{
+    color: #596e79;
+}
+.copyright{
+    background-color: #E8F0F2;
+    padding: 1% 1%;
+    text-align: center;
+}
+
+/*--------------------------------------- Footer -------------------------*/
