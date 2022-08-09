@@ -28,6 +28,7 @@ function Login() {
     return (
         <div>
         <div className='justify-center'>
+        <h1>Hi</h1>
         <GoogleButton onClick={signInWithGoogle}></GoogleButton>
         </div>
         </div>
