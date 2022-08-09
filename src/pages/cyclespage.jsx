@@ -29,11 +29,11 @@ const textcenter = {
 
 function Cyclespage() {
     const [cycles, setCycles] = useState([])
-    const [name, setName]=useState('')
+    // const [name, setName]=useState('')
 
-    const handlesubmit = () => {
-        console.log(name);
-    }
+    // const handlesubmit = () => {
+    //     console.log(name);
+    // }
     useEffect(() => {
         async function getAllCycle() {
             try {
@@ -46,6 +46,41 @@ function Cyclespage() {
         }
         getAllCycle()
     }, [])
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [contact, setContact] = useState('');
+    const [type, setType] = useState('');
+
+    async function handleSubmit() {
+        if (email == "" || name == "" || contact == "" || type == "") {
+            alert("Fill all the required fields!");
+            return;
+        }
+        const data = {
+            name: name,
+            email: email,
+            contact: contact,
+            describe: type,
+        };
+        console.log(data);
+        const newData = await axios.post(
+            "http://127.0.0.1:8000/rental/cycle/",
+            data
+        );
+        if (newData.status == 200) {
+            cycles.push(newData.data);
+            setCycles([...cycles]);
+        } else {
+            alert("Some Internal Error Occured!");
+        }
+        setName("");
+        setEmail("");
+        setContact("");
+        setType("");
+    }
+
+
 
     return (
         <div>
@@ -61,29 +96,30 @@ function Cyclespage() {
                                 <Card.Body>
                                     <Card.Title style={textcenter}>Card Title</Card.Title>
                                     <Card.Text>
-                                        <form action='http://127.0.0.1:8000/cycle/' method="post" content-type="json/application">
+                                        {/* <form action='http://127.0.0.1:8000/cycle/' method="post" content-type="json/application"> */}
+                                        <form>
                                             <div class="form-group">
                                                 <label for="name">Name</label>
-                                                <input type="name" class="form-control" id="name" name="name" value={name} onChange={(e)=>setName(e.target.value)} placeholder="Enter your Name"></input>
+                                                <input type="name" class="form-control" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your Name"></input>
                                             </div>
                                             <br></br>
                                             <div class="form-group">
                                                 <label for="email">Email</label>
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"></input>
+                                                <input type="email" class="form-control" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter email"></input>
                                             </div>
                                             <br></br>
                                             <div class="form-group">
                                                 <label for="phone">Contact</label>
-                                                <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter contact"></input>
+                                                <input type="phone" class="form-control" id="phone" name="phone" value={contact} onChange={(e) => setContact(e.target.value)} placeholder="Enter contact"></input>
                                             </div>
                                             <br></br>
                                             <div class="form-group">
                                                 <label for="describe">Type</label>
-                                                <input type="describe" class="form-control" id="describe" name="describe" placeholder="Enter your text"></input>
+                                                <input type="describe" class="form-control" id="describe" name="describe" value={type} onChange={(e) => setType(e.target.value)} placeholder="Enter your text"></input>
                                             </div>
                                             <br></br>
                                             <div style={textcenter}>
-                                                <button style={textcenter} type="submit" onClick={handlesubmit} class="btn btn-primary ">Submit</button>
+                                                <button style={textcenter} type="button" onClick={handleSubmit} class="btn btn-primary ">Submit</button>
                                             </div>
 
                                         </form>
@@ -96,7 +132,7 @@ function Cyclespage() {
             </div>
             <div style={tablebg}>
                 <Table striped bordered hover >
-                <thead style={tableborder}>
+                    <thead style={tableborder}>
                         <tr>
                             <th>#</th>
                             <th>Name</th>
@@ -105,17 +141,19 @@ function Cyclespage() {
                             <th>describe</th>
                         </tr>
                     </thead>
-                {cycles.map((cycle,i)=>{return(
-                    <tbody style={tableborder}>
-                        <tr>
-                            <td >1</td>
-                            <td>{cycle.name}</td>
-                            <td>{cycle.email}</td>
-                            <td>{cycle.contact}</td>
-                            <td>{cycle.describe}</td>
-                        </tr>
-                    </tbody>
-                    )})}
+                    {cycles.map((cycle, i) => {
+                        return (
+                            <tbody style={tableborder}>
+                                <tr>
+                                    <td >{i + 1}</td>
+                                    <td>{cycle.name}</td>
+                                    <td>{cycle.email}</td>
+                                    <td>{cycle.contact}</td>
+                                    <td>{cycle.describe}</td>
+                                </tr>
+                            </tbody>
+                        )
+                    })}
                 </Table>
             </div>
             <Footer></Footer>
