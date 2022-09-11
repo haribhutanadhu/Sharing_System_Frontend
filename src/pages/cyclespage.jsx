@@ -3,14 +3,13 @@ import Uses from '../components/uses';
 import Footer from '../components/footer';
 import CardHome from '../components/homecard';
 import cycleimg from '../assets/cycle.jpg';
-import electronicimg from '../assets/electronic.jpg';
-import sportimg from '../assets/sport.jpg';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import React from 'react';
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Alert from 'react-bootstrap/Alert';
 
 const x = {
     "padding": "2% 7%",
@@ -27,13 +26,18 @@ const textcenter = {
     "textAlign": "center",
 }
 
+var alertbool = false;
+
+function alertcondition(){
+    if(alertbool){
+        return <Alert style = { {"margin-bottom" : "0px" } } > Hey! Your data added Successfully </Alert>
+    }else{
+        return null
+    }
+}
+
 function Cyclespage() {
     const [cycles, setCycles] = useState([])
-    // const [name, setName]=useState('')
-
-    // const handlesubmit = () => {
-    //     console.log(name);
-    // }
     useEffect(() => {
         async function getAllCycle() {
             try {
@@ -78,13 +82,13 @@ function Cyclespage() {
         setEmail("");
         setContact("");
         setType("");
+        alertbool = true;
     }
-
-
 
     return (
         <div>
             <Navbar></Navbar>
+            {alertcondition()}
             <div className="sectioncard">
                 <div className='container-fluid d-flex justify-content-center'>
                     <div className='row'>
