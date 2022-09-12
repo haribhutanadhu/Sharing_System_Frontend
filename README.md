@@ -1,24 +1,25 @@
-Procedure:
-
-Setup Frontend :
+# Frontend SetUp :
 
 ```
-git clone https://github.com/Hemanth-Gattu/Production_House_Management.git
+git clone https://github.com/haribhutanadhu/Sharing_System_Frontend.git
 
 cd <project-directory>/frontend/
 
 npm install
-
-npm start
-
 ```
-Setup Backend:
+- Run development server on localhost
+``` 
+npm start
+```
+# Backend SetUp :
 
 Make sure you have python 3 and pipenv installed on your pc.
 
 Then follow these steps:
 
 ```
+git clone https://github.com/haribhutanadhu/Sharing_System_Backend.git
+
 cd <project-directory>/backend/
 
 cp .env.example .env
